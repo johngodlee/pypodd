@@ -7,7 +7,7 @@ import os
 from progress.bar import Bar
 
 # Define location variables
-destDir = os.environ['HOME'] + os.sep + "Downloads" + os.sep 
+destDir = os.environ['HOME'] + os.sep 
 subsLoc = os.environ['HOME'] + os.sep + "subscriptions" 
 
 # Define progress bar class for urllib.urlretrieve()
