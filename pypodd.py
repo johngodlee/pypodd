@@ -4,6 +4,7 @@
 import feedparser
 import urllib
 import os
+import csv
 from progress.bar import Bar
 
 # Define location variables
@@ -28,51 +29,42 @@ class dlProg:
         self.p.finish()
 
 
-# Import subscriptions list
+# Import subscriptions list from csv containing [url, name]
 with open(subsLoc) as f:
-	subList = f.read().splitlines()
+    subs = csv.reader(f)
+    subs = list(subs)
 
-
-# Get names of subscriptions
-feedList = []
-
-parseBar = Bar('Parsing feeds', max=len(subList))
-for i in subList:  # Parse all feeds
-    feedList.append(feedparser.parse(i))
-    parseBar.next()
-parseBar.finish()
-
-feedNameList = []
-for i in feedList:  # Extract names
-    feedNameList.append(i['feed']['title'])
-    
+# Split subs into URLs and titles
+urlList = [x[0] for x in subs]    
+subList = [x[1] for x in subs]
 
 # Select a podcast to download, from list of subscriptions
 count_subs = 1
 
-for i in feedNameList:
-	print(str(count_subs) + ") " + i)  # Print list of podcasts - could convert to parsed feeds later
-	count_subs += 1
+for i in subList:
+    print(str(count_subs) + ") " + i)  # Print list of podcasts - could convert to parsed feeds later
+    count_subs += 1
 input_subs = input("\nChoose a podcast [1-n]: ")  # Take input
 input_subs = int(input_subs)  # Convert input to integer
-
 index_subs = input_subs - 1  # For 0-base indexing
 
-
 # Parse chosen feed
-feedChooseList = []
-feedChooseList.append(feedList[index_subs])
+feedChooseList = []  # Create empty list
+feedChooseList.append(urlList[index_subs])  # Fill list with URL of chosen podcast
 
+feedList = []  # Create empty list
+for i in feedChooseList:
+    feedList.append(feedparser.parse(i))  # Fill list parsed data from URL
 
 # Extract episode names from parsed feed
-nameList = []
-for i in feedChooseList[0]['entries']:
+nameList = []  # Create empty list
+for i in feedList[0]['entries']:  # Fill list with names of episodes
     nameList.append(i['title'])
 
 
 # Extract episode links from parsed feed
-linkList = []
-for i in feedChooseList[0]['entries']:
+linkList = []  # Create empty list
+for i in feedList[0]['entries']:  # Fill list with episode URLs
     linkList.append(i['enclosures'][0]['href'])
 
 
