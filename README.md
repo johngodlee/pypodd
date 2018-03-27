@@ -7,7 +7,7 @@
 	* `destDir` defines the location that downloads should be saved to
 	* `subsLoc` defines the location of the file which holds rss feeds
 
-* The file holding RSS feeds should look like this:
+* The file holding RSS feeds should look like this, an example is found in `subscriptions.txt`:
 
 ```
 URL, Name of Podcast

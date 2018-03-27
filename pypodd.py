@@ -9,7 +9,8 @@ from progress.bar import Bar
 
 # Define system location variables
 destDir = os.environ['HOME'] + os.sep + "Downloads" + os.sep  # Note trailing `os.sep`
-subsLoc = os.environ['HOME'] + os.sep + "subscriptions" 
+subsLoc = "subscriptions.txt" 
+# e.g. subsLoc = os.environ['HOME'] + os.sep + "subscriptions.txt"
 
 # Define progress bar class for urllib.urlretrieve()
 class dlProg:

@@ -1,0 +1,5 @@
+http://dataskeptic.libsyn.com/rss, Data Skeptic
+http://downloads.bbc.co.uk/podcasts/radio4/farming/rss.xml, Farming Today
+http://downloads.bbc.co.uk/podcasts/radio4/fricomedy/rss.xml, Friday Night Comedy
+http://downloads.bbc.co.uk/podcasts/worldservice/digitalp/rss.xml, Click
+http://downloads.royalsociety.org/rss/audio.xml, The Royal Society
