@@ -1,17 +1,25 @@
 # pypodd
 
-## Grab podcasts from list of rss feeds
+## Grab podcasts from csv of rss feeds
 
 * Run with `./pypodd.py`
 * Edit variables at top of `pypodd.py`
-	* `destDir` defines the location that downloads should be saved
-	* `subsLoc` defines the location of a file which holds rss feeds
+	* `destDir` defines the location that downloads should be saved to
+	* `subsLoc` defines the location of the file which holds rss feeds
 
-* The subscriptions file should look like this:
+* The file holding rss feeds should look like this:
 
 ```
-http://rss.acast.com/globalpillage
-http://rss.acast.com/marscorp
-http://www.bbc.co.uk/programmes/b006qgft/episodes/downloads.rss
-http://www.bbc.co.uk/programmes/b006qnx3/episodes/downloads.rss
+URL, Name of Podcast
+URL, Name of Podcast
+...
+```
+
+e.g. 
+
+```
+http://rss.acast.com/globalpillage, Global Pillage
+http://rss.acast.com/marscorp, Mars Corp
+http://www.bbc.co.uk/programmes/b006qgft/episodes/downloads.rss, Open Country
+http://www.bbc.co.uk/programmes/b006qnx3/episodes/downloads.rss, The Food Programme
 ```
