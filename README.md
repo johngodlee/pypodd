@@ -1,13 +1,13 @@
 # pypodd
 
-## Grab podcasts from csv of rss feeds
+## Grab podcasts from csv of RSS feeds
 
-* Run with `./pypodd.py`
-* Edit variables at top of `pypodd.py`
+* Run by navigating to directory containing this file and run with `./pypodd.py`
+* Edit variables at top of `pypodd.py` to customise system locations
 	* `destDir` defines the location that downloads should be saved to
 	* `subsLoc` defines the location of the file which holds rss feeds
 
-* The file holding rss feeds should look like this:
+* The file holding RSS feeds should look like this:
 
 ```
 URL, Name of Podcast
@@ -23,3 +23,5 @@ http://rss.acast.com/marscorp, Mars Corp
 http://www.bbc.co.uk/programmes/b006qgft/episodes/downloads.rss, Open Country
 http://www.bbc.co.uk/programmes/b006qnx3/episodes/downloads.rss, The Food Programme
 ```
+
+
