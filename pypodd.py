@@ -3,14 +3,16 @@
 # Modules
 import feedparser
 import urllib
+import listparser
 import os
+import sys
 import csv
 from progress.bar import Bar
 
 # Define system location variables
 destDir = os.environ['HOME'] + os.sep + "Downloads" + os.sep  # Note trailing `os.sep`
-subsLoc = "subscriptions.txt" 
-# e.g. subsLoc = os.environ['HOME'] + os.sep + "subscriptions.txt"
+subsLoc = "subscriptions.csv" 
+# e.g. subsLoc = os.environ['HOME'] + os.sep + "subscriptions.csv"
 
 # Define progress bar class for urllib.urlretrieve()
 class dlProg:
@@ -30,13 +32,23 @@ class dlProg:
         self.p.finish()
 
 # Import subscriptions list from csv containing [url, name]
-with open(subsLoc) as f:
+
+if subsLoc.endswith("csv"): 
+  with open(subsLoc) as f:
     subs = csv.reader(f)
     subs = list(subs)
+  # Split subs into URLs and titles
+  urlList = [x[0] for x in subs]    
+  subList = [x[1] for x in subs]
+elif subsLoc.endswith("xml"):
+  with open(subsLoc) as f:
+    subs = listparser.parse(f)
+  urlList = [x.url for x in subs.feeds]
+  subList = [x.title for x in subs.feeds] 
+else: 
+  raw_input("Subscriptions list is not `.csv` or OPML `.xml`, exiting ...")
+  sys.exit(0)
 
-# Split subs into URLs and titles
-urlList = [x[0] for x in subs]    
-subList = [x[1] for x in subs]
 
 # Select a podcast to download, from list of subscriptions
 count_subs = 1

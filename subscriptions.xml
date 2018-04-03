@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<opml version="1.0">
+  <head>
+    <title>Pocket Casts Feeds</title>
+  </head>
+  <body>
+    <outline text="feeds">
+      <outline type="rss" text="Hospital Records Podcast" xmlUrl="http://podcast.hospitalrecords.com/HospitalRecordsPodcast.xml" />
+      <outline type="rss" text="Slow Radio" xmlUrl="https://podcasts.files.bbci.co.uk/p05k5bq0.rss" />
+      <outline type="rss" text="The Heart" xmlUrl="http://feeds.theheartradio.org/TheHeartRadio" />
+      <outline type="rss" text="Gardeners' Question Time" xmlUrl="https://podcasts.files.bbci.co.uk/b006qp2f.rss" />
+    </outline>
+  </body>
+</opml>
