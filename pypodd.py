@@ -2,12 +2,13 @@
 
 # Modules
 import feedparser
-import urllib
+import urllib.request
 import listparser
 import os
 import sys
 import csv
 from progress.bar import Bar
+from termcolor import colored
 
 # Define system location variables
 destDir = os.environ['HOME'] + os.sep + "Downloads" + os.sep  # Note trailing `os.sep`
@@ -28,7 +29,7 @@ class dlProg:
                 else:
                     self.p.goto(blocks * bs)
 
-        urllib.urlretrieve(url, to, update)
+        urllib.request.urlretrieve(url, to, update)
         self.p.finish()
 
 # Import subscriptions list from csv containing [url, name]
@@ -84,7 +85,7 @@ while input_exit != 2:  # Terminate program if input_exit == 2
     count_epi_1 = 1
     optList = ['Most recent episode', 'Another episode']  # Create a list of options
 
-    print("\nMost recent episode: " + nameList[0] + "\n")  # Print name of most recent episode
+    print( colored("\nMost recent episode: " + nameList[0] + "\n", "green"))  # Print name of most recent episode
     for i in optList:  # Choose between most recent or other episode
             print(str(count_epi_1) + ") " + i)
             count_epi_1 += 1
@@ -97,9 +98,9 @@ while input_exit != 2:  # Terminate program if input_exit == 2
     len_nameList = len(nameList)
 
     if input_epi_1 == 1:  # Outer if statement, if user inputs 1 or 2, do stuff, otherwise, return to beginning
-        print ("\nDownloading most recent episode")
+        print("\nDownloading most recent episode")
         dlExt = ".mp3"
-        dlName = nameList[0]
+        dlName = nameList[0].replace("/", "_")
         dlFile = destDir + dlName + dlExt
         dlURL = linkList[0]
         dlProg().get(dlURL, dlFile)
@@ -107,7 +108,7 @@ while input_exit != 2:  # Terminate program if input_exit == 2
         for i in optList:  # Give option to download more podcasts (return to main menu or exit
             print(str(count_epi_2) + ") " + i)
             count_epi_2 += 1
-        input_exit = input("\nFinished Downloading. Get more?")
+        input_exit = input("\nFinished Downloading. Get more? ")
         input_exit = int(input_exit)
     elif input_epi_1 == 2:
         for i in nameList:
@@ -117,7 +118,7 @@ while input_exit != 2:  # Terminate program if input_exit == 2
         input_epi_2 = int(input_epi_2) - 1
         if input_epi_2 <= len_nameList:  # Inner if statement, If user inputs a valid episode number, do stuff, otherwise, try again
             dlExt = ".mp3"
-            dlName = nameList[input_epi_2]
+            dlName = nameList[input_epi_2].replace("/", "_")
             dlFile = destDir + dlName + dlExt
             dlURL = linkList[input_epi_2]
             dlProg().get(dlURL, dlFile)
