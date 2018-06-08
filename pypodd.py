@@ -142,7 +142,7 @@ while input_exit != 2:  # Terminate program if input_exit == 2
             for i in optList:  # Give option to download more podcasts (return to main menu or exit
                 print(str(count_epi_2) + ") " + i)
                 count_epi_2 += 1
-            input_exit = input("\nFinished Downloading. Get more? ")
+            input_exit = input("\nFinished Downloading. Get more?\n")
             input_exit = int(input_exit)
         elif input_epi_1 == 2:
             for i in nameList:
@@ -160,7 +160,7 @@ while input_exit != 2:  # Terminate program if input_exit == 2
                 for i in optList:
                     print(str(count_epi_3) + ") " + i)
                     count_epi_3 += 1
-                input_exit = input("\nFinished Downloading. Get more?")
+                input_exit = input("\nFinished Downloading. Get more?\n")
                 input_exit = int(input_exit)
             else:
                 raw_input("Invalid choice, press Enter to try again...")
