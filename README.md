@@ -1,6 +1,6 @@
 # pypodd
 
-## Grab podcasts from plain text .csv or OPML .xml of RSS feeds
+## Grab podcasts from a `.csv` or OPML `.xml` of RSS feeds
 
 * Run by navigating to directory containing this file and run with `./pypodd.py`
 * Edit variables at top of `pypodd.py` to customise system locations
