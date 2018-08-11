@@ -52,10 +52,10 @@ else:
 
 
 # Select a podcast to download, from list of subscriptions
-count_subs = 1
 input_exit = 1
 
 while input_exit != 2:  # Terminate program if input_exit == 2
+    count_subs = 1
     count_opt = 1
     optListAllNo = ['All most recent episodes', 'Specific episode']  # A list of options
     for i in optListAllNo:
