@@ -192,7 +192,7 @@ def menu_end():
         print(str(exit_num) + ") " + i)
         exit_num += 1
     global input_exit
-    input_exit = input("\nFinished Downloading. Get more? (y/n) \n")
+    input_exit = input("\nFinished Downloading. Get more? \n")
     input_exit = int(input_exit)
     menu_end_sel()
     return
