@@ -128,10 +128,15 @@ def menu_two():
             nameList.append(i['title'])
 
         # Extract episode links from parsed feed
+
         global linkList
         linkList = []  # Create empty list
+
         for i in feedList[0]['entries']:  # Fill list with episode URLs
-            linkList.append(i['enclosures'][0]['href'])
+            try:
+                linkList.append(i['enclosures'][0]['href'])
+            except IndexError:
+                linkList.append('null')
         menu_three()
     elif index_subs > len_subList:
         input("Invalid choice, press Enter to try again...")
@@ -142,7 +147,6 @@ def menu_two():
 def menu_three():
     count_epi_1 = 1
     optList = ['Most recent episode', 'Another episode']  # Create a list of options
-
     print( colored("\nMost recent episode: " + nameList[0] + "\n", "green"))  # Print name of most recent episode
     for i in optList:  # Choose between most recent or other episode
             print(str(count_epi_1) + ") " + i)
@@ -157,32 +161,40 @@ def menu_three_sel():
     count_epi_2 = 1
     len_nameList = len(nameList)
     if input_epi_1 == 1:
-        print("\nDownloading most recent episode")
-        dlExt = ".mp3"
-        dlName = nameList[0].replace("/", "_")
-        dlFile = destDir + dlName + dlExt
-        dlURL = linkList[0]
-        dlProg().get(dlURL, dlFile)
-        menu_end()
+        if linkList[0] == "null":
+            input("Broken link, press Enter to try again") 
+            menu_top()
+        else:
+            print("\nDownloading most recent episode")
+            dlExt = ".mp3"
+            dlName = nameList[0].replace("/", "_")
+            dlFile = destDir + dlName + dlExt
+            dlURL = linkList[0]
+            dlProg().get(dlURL, dlFile)
+            menu_end()
     elif input_epi_1 == 2:
         for i in nameList:
             print(str(count_epi_2) + ") " + i)
             count_epi_2 +=1
         input_epi_2 = input("\nChoose an episode to download: ")
         input_epi_2 = int(input_epi_2) - 1
-        if input_epi_2 <= len_nameList:  # Inner if statement, If user inputs a valid episode number, do stuff, otherwise, try again
-            dlExt = ".mp3"
-            dlName = nameList[input_epi_2].replace("/", "_")
-            dlFile = destDir + dlName + dlExt
-            dlURL = linkList[input_epi_2]
-            dlProg().get(dlURL, dlFile)
-            menu_end()
-        elif input_epi_2 > len_nameList:
+        if input_epi_2 <= len_nameList - 1:  # Inner if statement, If user inputs a valid episode number, do stuff, otherwise, try again
+            if linkList[input_epi_2] == 'null':
+                input("Broken link, press Enter to try again") 
+                menu_top()
+            else:
+                dlExt = ".mp3"
+                dlName = nameList[input_epi_2].replace("/", "_")
+                dlFile = destDir + dlName + dlExt
+                dlURL = linkList[input_epi_2]
+                dlProg().get(dlURL, dlFile)
+                menu_end()
+        else:
             input("Invalid choice, press Enter to try again...")
             menu_three_sel()
     else:
         input("Invalid choice, press Enter to try again...")
-        menu_three_sel()
+        menu_three()
     return
 
 def menu_end():
