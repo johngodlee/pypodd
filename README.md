@@ -1,8 +1,9 @@
 # pypodd
 
+__Note: I don't maintain this anymore. I use newsboat now.__
+
 ## Grab podcasts from a `.csv` or OPML `.xml` of RSS feeds
 
-__I don't maintain this anymore. I use newsboat now.__
 
 * Run by navigating to directory containing this file and run with `./pypodd.py`
 * Edit variables at top of `pypodd.py` to customise system locations
